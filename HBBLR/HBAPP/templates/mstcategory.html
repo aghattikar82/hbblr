@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% include "hotelhead.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Category </title>
+</head>
+<body>
+	{% include "hotelmid.html" %}
+	<center>
+		<h3> Add Category</h3>
+
+	{{msg}}
+	 </center>
+
+
+	<form method="POST" autocomplete="off" enctype="multipart/form-data">
+		<table class="table">
+			<tr>
+				<td> <font >Category Name </font> </td>
+				<td>
+					<input class="form-control" type="txt" name="txtname" required autofocus="on" placeholder="Enter Your Name">
+				</td>
+			</tr>
+			<tr> 
+				<td><font > Description</font> </td>
+				<td>
+					<textarea class="form-control" name="Description" required autofocus="on" placeholder="Enter Your Description "></textarea>
+				</td>
+			</tr>
+			<tr> 
+				<td>
+					<font >Image Upload </font>
+				</td>
+				<td>
+					<input class="form-control" type="file" name="myfile">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" class="btn btn-success" name="btnsubmit" value="Add">
+					<input type="reset" class="btn btn-warning"  name="cancel" value="cancel">
+				</td>
+			</tr>
+			
+		</table>
+			 {% csrf_token %} 
+	</form>
+{% include "last.html" %}
+</body>
+</html>

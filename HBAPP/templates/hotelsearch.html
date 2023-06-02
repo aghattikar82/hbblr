@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+   {% include "temp/head.html" %}
+	<meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotel Search</title>
+ <script type="text/javascript">
+    function ConfirmDelete() {
+    return confirm("Are Your Sure Want to Delete");
+     }
+</script>
+</head>
+<body>
+    {% include "temp/superadminmid.html" %}
+
+    <div>
+        <center> <b>{{msg}}</b> </center>
+    </div>
+    <center><h2>Search Hotel Record</h2></center>
+    <br>
+
+    <form autocomplete="off" name="searchrecord" method="POST"  enctype="multipart/form-data">
+            <center>
+      <div class="container-fluid mt-3" >
+        <div class="input-group mb-3" align="center">
+  
+                     <span class="col-2" >
+                        <select  name="ddlfield" class="form-select col-lg-3" required>
+                            <option selected><font color="red">Search By</font></option>
+                            <option value="id">Id</option>
+                            <option value="hotelname">Hotel Name</option>
+                            <option value="ownername">Owner Name</option>
+                            <option value="mobilenumber">Mobile Number</option>
+                        </select>
+                    </span> 
+                    <span class="col-6">
+                    <input type="text" name="txtsearch" class="form-control col-lg-4" required placeholder="Enter Hotel Id/Hotel Name/Owner NAme"> 
+                    </span><input type="submit" name="btnsubmit" value="Get Record" class="btn btn-info">
+</div>
+
+        {% csrf_token %}
+
+    </div>
+    </center>
+    </form>
+
+</body>
+<br>
+
+ {% for d in data %}
+ <div class="container mt-3">
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header">
+        <a class="btn" data-bs-toggle="collapse" href="#collapse{{d.id}}">
+       <b>Hotel Name: </b>{{d.hotelname}}<b>&nbsp; Mobile Number: </b>{{d.mobilenumber}}  
+        </a>
+      </div>
+      <div id="collapse{{d.id}}" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+         <ul class="list-group">
+          <li class="list-group-item"><b> Owner Name : </b>{{d.ownername}}</li>
+          <li class="list-group-item"><b>Email : </b>{{d.emailid}} </li>
+          <li class="list-group-item"><b>Mobile Number:</b> {{d.mobilenumber}}</li>
+         <!-- <li class="list-group-item"><b>Latitude : </b>{{d.latitude}} </li>
+          <li class="list-group-item"><b>Longitude:</b> {{d.longitude}}</li> -->
+          
+          <li class="list-group-item"><b>Address: </b>{{d.address}}</li>
+          <li class="list-group-item"><b>GST Number: </b>{{d.gstnumber}}</li>
+          <li class="list-group-item"><b>Registered Data: </b>{{d.date}}</li>
+          <li class="list-group-item"><b>Hotel Owner image: </b><img static src="{{d.hownerphoto}}" height="100px"  width="100px" /></li>
+          <li class="list-group-item"><b>Registration Image: </b><img static src="{{d.hregphoto}}" height="100px"  width="100px" /></li>
+          <li class="list-group-item"><b>FSSAI Licence Copy: </b><img static src="{{d.fssaiimage}}" height="100px"  width="100px" /></li>
+          <li class="list-group-item"><b>Pan Image: </b><img static src="{{d.panimage}}" height="100px"  width="100px" /></li>
+          
+        </ul>
+
+            <form name="frmdelete" align="center" method="POST">
+                <div class="btn-group " >
+                <input type="hidden" name="hid" value="{{ d.id }}">
+                <button type="submit" name="btnsubmit" value="Edit" class="btn btn-primary">Edit</button>
+               
+                <input type="hidden" name="hid" value="{{ d.id }}">
+                <button type="submit" name="btnsubmit"  class="btn btn-warning" value="Items">Items</button>
+                
+                <input type="hidden" name="hid" value="{{ d.id }}">
+                <button type="submit" name="btnsubmit"  class="btn btn-success" value="Orders">Orders</button>
+                
+                 <input type="hidden" name="hid" value="{{ d.id }}">
+                <button type="submit" name="btnsubmit"  class="btn btn-info" value="Category">Category</button> 
+
+                 <input type="hidden" name="hid" value="{{ d.id }}">
+                <button type="submit" name="btnsubmit"  class="btn btn-danger" onclick="ConfirmDelete()" value="Delete">Delete</button>
+               
+            </div>
+                
+ {% csrf_token %}
+         </form>
+            
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+{% endfor %}
+
+{% include "temp/last.html" %}
+</body>
+</html>

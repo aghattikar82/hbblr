@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	{% load static %}
+	{% include "head.html"  %}
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>Update Admin details</title>
+</head>
+<body> 
+	{% include "adminmid.html"  %}
+	
+<form method="post" name="frmedit" autocomplete="of" class="container" >
+	 	 <center><h1></h1></center>
+	 <center>{{msg}}</center> 
+	 <center><h1>Update Admin Details</h1> </center> 
+
+<center>
+	<table class="table table-bordered" style="width:800px;">
+		{% for i in data %}
+		<tr>
+			<td>
+				Admin ID
+			</td>
+			<td>
+				<input type="text" class="form-control" name="aid" value="{{i.id}}" readonly>
+			</td>
+		</tr>
+       <tr>
+			<td>
+			<font color="red">*</font>	Admin Name
+			</td>
+			<td>
+				<input type="text" class="form-control" name="txtname" placeholder="Enter Name" autofocus="on">
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<font color="red">*</font>	Admin Mobile Number
+			</td>
+			<td>
+				<input type="number" class="form-control" name="txtnumber" placeholder="Eneter Mobile Number" >
+			</td> 
+		</tr>
+
+<tr>
+	<td colspan="2" align="center">
+		<input type="submit" name="btnsubmit" class="btn btn-success" value="Update">
+		<input type="reset" name="btnsubmit" class="btn btn-warning" value="Cancel">
+		
+	</td>
+
+</tr>		
+{% endfor %}
+
+	</table>
+</center>
+	
+{% csrf_token	%}
+</form>
+{% include "last.html"  %}
+	
+</body>
+
+</html>

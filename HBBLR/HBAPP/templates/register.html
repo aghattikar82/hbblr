@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Category </title>
+</head>
+<body>
+	{% include "mid.html" %}
+	<center>
+		<h3> Add Categary</h3>
+
+	{{msg}}
+	 </center>
+
+
+	<form method="POST" autocomplete="off" enctype="multipart/form-data">
+		<table align="center" border="2">
+			<tr>
+				<td> <font color="red">Categary Name </font> </td>
+				<td>
+					<input type="txt" name="txtname" required autofocus="on" placeholder="Enter Your Name">
+				</td>
+			</tr>
+			<tr> 
+				<td><font color="red"> Description</font> </td>
+				<td>
+					<textarea name="Description" required autofocus="on" placeholder="Enter Your Description "></textarea>
+				</td>
+			</tr>
+			<tr> 
+				<td>
+					<font color="red">Image Upload </font>
+				</td>
+				<td>
+					<input type="file" name="myfile">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" name="btnsubmit" value="Add">
+					<input type="reset" name="cancel" value="cancel">
+				</td>
+			</tr>
+			
+		</table>
+			 {% csrf_token %} 
+	</form>
+{% include "last.html" %}
+</body>
+</html>

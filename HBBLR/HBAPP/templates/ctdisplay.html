@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "head.html"  %}
+	{% load static %}
+	<title>Display</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	{% include "mid.html"  %}
+
+	<center><h2>Customer Data</h2></center>
+	<div style="height: 40px" align="center">
+			{{msg}}
+	</div>
+	<form name="frmdisplay" method="POST" enctype="multipart/form-data">
+		<table border="1" class="table table-bordered" align="center" ">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Mobile Number</th>
+				<th>Gmail</th>
+				<th>Aadhar Number</th>
+				<th>Address</th>
+				<th>Current Location</th>
+				<th>Photo</th>
+				<th>Register Date</th>
+			</tr>
+				{% for d in data %}
+			<tr>
+				<td>{{d.id}}</td>
+				<td>{{d.customer_name}}</td>
+				<td>{{d.mobile_number}}</td>
+				<td>{{d.gmail}}</td>
+				<td>{{d.aadhar_number}}</td>
+				<td>{{d.address}}</td>
+				<td>{{d.Current_location}}</td>
+				<td><img static src="{{d.image}}" height="50px" width="50px"></td>
+				<td>{{d.registerdate}}</td>
+
+			</tr>
+				{%endfor%}
+		</table>
+		
+	</form>
+	{% include "last.html"  %}
+</body>
+</html>

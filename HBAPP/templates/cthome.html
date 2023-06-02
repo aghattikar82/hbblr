@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+		{% include "head.html"  %}
+	<title>Customer Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+	function counter(val)
+	{
+		c=parseInt(document.getElementById("txtcount").value);
+
+		if(val==-1 && c=="1" )
+		{
+			document.getElementById("txtcount").value="1";
+		}
+		else
+		{
+			c+=parseInt(val);
+			document.getElementById("txtcount").value="";
+			document.getElementById("txtcount").value=c;
+		}
+	}
+</script>
+
+</head>
+<body>
+	{% include "ctmid.html"  %}
+<center>
+	{{msg}}
+	</center>
+	{% if  categorydata %}
+
+<center>
+<h2>Choose by Category</h2>
+<br/>
+</center>
+{%endif%}
+		<div class="container-fluid col-lg-10">
+			<div class="row">
+			  {%for i in categorydata%}
+			  <div  class="col-lg-4">
+			<form  name="frmitems" method="post" >
+
+			  	<input height="300px" width="300px"  name="btnsubmit" value="image" type="image"  style="border-radius:20px"  class="card-img-top"  src="{{i.image}}"   />
+			   	<br/>
+			   	<input type="hidden" name="iid" value="{{i.id}}" />
+			  {% csrf_token %}
+
+			   </form>	
+			  <center>	
+			     <b> {{i.name}}</b>
+			     <b>  {{i.description}}</b>
+
+			</center>
+			  </div>
+
+			  {%endfor%}
+		
+			</div>
+		</div>
+
+		{% if  itemdata %}
+<hr/><br/>
+
+<center>
+<h2>Choose by Item</h2><br/>
+</center>
+	{%endif%}
+		<div class="container-fluid col-lg-10">
+			<div class="row">
+			  {%for i in itemdata%}
+			  <div  class="col-lg-4">
+			<form  name="frmitems" method="post" >
+
+			  	<input height="300px" width="300px"  name="btnsubmit" value="image" type="image"  style="border-radius:20px"  class="card-img-top"  src="{{i.itemphoto}}"   />
+			   	<br/>
+			   	<input type="hidden" name="iid" value="{{i.id}}" />
+			  {% csrf_token %}
+
+			   </form>	
+			  <center>	
+			     <b> Name: </b>{{i.itemname}}
+			     <b> Cost: </b>{{i.cost}}
+
+			</center>
+			  </div>
+
+			  {%endfor%}
+		
+			</div>
+		</div>
+<center>
+{%if data %}
+<center>
+<h2>Item Details</h2>
+
+</center>
+{%endif%}
+			  		{% for  i  in data %}
+	<form action="/ctItemOrder"  name="frmorder" method="POST">
+
+		<div class="container-fluid">
+
+			<div class="row">
+			  		<div  class="col-lg-3 col-md-12 col-sm-12"></div>
+				
+			  		<div  class="col-lg-3 col-md-12 col-sm-12">
+
+<img style="border-radius:20px"  class="card-img-top" src="{{i.itemphoto}}"  height="200px" width="300px">
+					</div>
+					<div  style="text-align: left;" class="col-lg-3 col-md-12 col-sm-12 mt-3">
+<input type="hidden" name="itemid" value="{{i.id}}">
+<input type="hidden" name="hotelid" value="{{i.hotelid}}">
+<input type="hidden" name="itemcost" value="{{i.cost}}">
+
+								 &emsp;<b>{{i.itemname}}</b><br>
+						     &emsp; <i class="fa fa-inr"></i> {{i.cost}}<br>
+						    &emsp; {{i.discription}}
+						     <div  class="container mt-2">
+							  <div  class="input-group">
+							    <input  type="button"  name="btnsub" value="-" onclick="counter(-1)" class="btn btn-secondary"/>
+							    <input readonly type="number" id="txtcount"  name="qty" value="1" min="0" max="50" class="btn btn-light"/>
+							    <input type="button"  name="btnadd" value="+" onclick="counter(1)" class="btn btn-secondary"/>
+							  
+							  <input type="hidden" name="iid" value="{{i.id}}"/><br>
+
+
+								</div>
+							</div>
+								<br>&emsp;&nbsp;<input style="width:130px;" type="submit" name="btnadditem" class="btn btn-primary" value="Add to Cart"/>
+		
+						</div>
+			     	</div>
+			     </div>
+{% csrf_token %}
+			 </form>
+
+			  {% endfor %}
+			  
+
+	 
+		{% include "last.html"  %}
+	</body>
+	</html>

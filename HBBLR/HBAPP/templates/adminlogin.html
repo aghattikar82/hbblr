@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head> 
+ {% include "temp/head.html"  %}
+	<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+      	<title>Super Admin Login</title>
+</head>
+<body>
+ {% include "temp/loginmid.html"  %}
+ 	<form name="frmregister" method="post" autocomplete="off"  style="text-align: left;"> 
+
+
+<div align="center"><h1> Super Admin Login</h1></div>
+
+
+	<div align="center" >
+		{{msg}}
+	</div>
+
+
+<div class="container-fluid">
+
+	<div class="row">	
+<div class="form-group col-md-3 col-lg-4 col-sm-0"></div>
+
+	<div class="form-group col-md-6 col-lg-4 col-sm-12">
+		<label for="name"><font color="red">*</font> Mobile Number </label>
+		<input type="number" value="9876543210" name="txtmobilenumber"  class="form-control" autofocus="on" placeholder="Enter Mobile Number" maxlength="13" required>
+	</div>
+</div><br>
+<div class="row">	
+	<div class="form-group col-md-3 col-lg-4 col-sm-0"></div>
+
+	<div class="form-group col-md-6 col-lg-4 col-sm-12">
+		<label for="name"><font color="red">*</font>Password	 </label>
+		<input type="password" name="txtpassword" value="9876543210"  class="form-control" placeholder="Enter Password" maxlength="20" required>
+	</div>
+</div><br>
+<div align="center">
+	<input type="submit" name="btnlogin" value="Login" class="btn btn-success" >
+							
+	<input type="reset" name="btncancel" value="Cancel" class="btn btn-warning" >
+</div>
+
+</div>
+{% csrf_token %}
+</form>
+
+	 {% include "temp/last.html"  %}
+
+</body>
+</html>

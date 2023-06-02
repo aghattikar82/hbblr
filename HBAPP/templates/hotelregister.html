@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+     {% include "temp/head.html" %}
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Hotel Register</title>
+        <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRGb2A0uBu64dI9CkEhx5rgBm3mR-B8m8"></script>
+
+<script type="text/javascript">
+function callme()
+{
+  if (navigator.geolocation) 
+  {
+
+    navigator.geolocation.getCurrentPosition(showPosition);
+      
+  } 
+
+}    
+function showPosition(position) 
+{
+  document.getElementById("latitude").value= position.coords.latitude ;
+  document.getElementById("longitude").value=position.coords.longitude;
+document.getElementById("map").innerHTML="<iframe src='https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d3887.1548254326053!2d77.58974401430487!3d13.025810817212065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m3!3m2!1d"+position.coords.latitude+"!2d"+position.coords.longitude+"!4m5!1s0xa810be6249547925%3A0xf8ef1404591eeb57!2sminds%20coding%20academy!3m2!1d13.026626199999999!2d77.5875621!5e0!3m2!1sen!2sin!4v1678962179469!5m2!1sen!2sin' width='1100' height='450' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>"
+
+}
+
+</script>
+
+
+
+</head>
+<body>
+    {% include "temp/superadminmid.html" %}
+    <div align="center">
+        <h2>
+            {{msg}}
+        </h2>
+    </div>
+    <div align="center">
+        <h2>
+            Hotel Register
+        </h2>
+    </div>
+    <div>
+        <div class="container mt-3">
+            <div >
+                <form method="POST" name="frmhotelregister" autocomplete="off" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col">
+                        <label for="hotelname"><b><font color="red">*</font> Hotel Name:</b></label>
+                        <input type="text" class="form-control"  name="txthotelname" placeholder="Enter Hotel Name" required autofocus="on" /></div>
+                 
+              
+                    <div class="col">
+                        <label for="ownername" ><b><font color="red">*</font>Owner Name:</b></label>
+                        <input type="text" class="form-control"  name="txtownername" placeholder="Enter Hotel Name" required  />
+                    </div>
+                   </div>
+                    <p></p>   
+                    <div class="row">
+                        <div class="col">
+                        <label for="mobilenumber" ><b><font color="red">*</font>Mobile Number:</b></label>
+                        <input type="number"  name="txtmobilenumber" class="form-control" placeholder="Enter Mobile Number" required  />
+                    </div>
+                 
+                    <div class="col">
+                        <label for="email"><b><font color="red">*</font>Email Id:</b></label>
+                        <input type="email"  name="txtemailid" placeholder="Enter Email Id" class="form-control" required />
+                    </div>
+               </div>
+                <p></p>   
+               <div class="row">
+                    <div class="col">
+                        <label for="Address"><b><font color="red">*</font>Address:</b></label>
+                        <textarea name="txtaddress" placeholder="Enter Adddress" class="form-control" required >
+
+                        </textarea>
+                    </div>
+                    
+             
+                    <div class="col">
+                        <label for="gstno"><b><font color="red">*</font>GST Number:</b></label>
+                        <input type="txt"  name="txtgstnumber" placeholder="Enter GST No"  class="form-control" required />
+                    </div>
+               </div>
+                <p></p>   
+               <div class="row">
+                   <div class="col">
+                        <label for="date"><b><font color="red">*</font>Registration Date:</b></label>
+                        <input type="date" class="form-control"  name="txtdate" placeholder="Enter Date" required />
+                    </div>
+                    <br>
+                    <div class="col">
+                        <label for="password"><b><font color="red">*</font>Password:</b></label>
+                        <input type="password"  name="txtpassword" class="form-control" required />
+                    </div>
+                 </div>
+                 <p></p>
+                  <div class="row">
+                   <div class="col">
+                        <label for="date"><b><font color="red">*</font>FSSAI  Licence Copy</b></label>
+                        <input type="file" class="form-control"  name="fssaiimage" placeholder="Enter Date" required />
+                    </div>
+                    <br>
+                    <div class="col">
+                        <label for="password"><b><font color="red">*</font>Pan Card Copy</b></label>
+                        <input type="file"  name="panimage" class="form-control" required />
+                    </div>
+                 </div>
+                  <p></p>  
+                   
+            <div class="row">
+                    <div class="col">
+                        <label for="ownerphoto"><b><font color="red">*</font>Owner Photo:</b></label>
+                        <input type="file"  name="ownerphoto"  required  class="form-control" />
+                    </div>
+          
+                    <div class="col">
+                        <label for="regphoto"><b><font color="red">*</font>Registration Photo:</b></label>
+                        <input type="file"  name="regphoto"  required  class="form-control" />
+                    </div>
+              </div> 
+              <p></p>
+       <div class="row">      
+             <div class="col-lg-6">
+                <label for="">Latitude</label>
+                <input type="number" class="form-control" name="txtlatitude" id="latitude" readonly placeholder="Latitude">
+            </div>
+            <div class="col-lg-6">
+                <label for="">Longitude</label>
+        <input type="number" name="txtlongitude" class="form-control" id="longitude" readonly placeholder="Longitude">
+   </div>
+   </div> 
+   <p></p>
+   <div class="row">
+    <div id="map">
+        
+    </div>
+       
+   </div> 
+
+
+    </div>
+    <br>
+            <input type="button" value="Get Current Location" onclick="callme()"  /> 
+                        
+                   
+                    <br>
+                   
+                
+                  <p></p>       
+                    <center>
+                        <div align="center" >
+                              <input  type="submit" name="btnsubmit" class="btn btn-success" value="Register"/>
+                            
+                                <input  type="reset"  name="btncancel"  class="btn btn-primary" value="Cancel"/>
+                            </div> 
+                        </div>
+                    </center>
+                    <br>
+                    {% csrf_token %}
+                </form>
+            </div>    
+        
+    </div>
+</div>
+</div>
+
+
+{% include "temp/last.html" %}
+</body>
+</html>

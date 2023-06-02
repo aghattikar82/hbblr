@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "head.html"  %}
+	<title>MST Display</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	{% include "mid.html"  %}
+	<center><h2>Membership Data</h2></center>
+	<div style="height: 40px" align="center">
+			{{msg}}
+	</div>
+	
+	</div>
+	<form name="frmmstdisplay" method="POST">
+		<table  align="center" class="table table-bordered" border="1">
+			<tr>
+				<th>ID</th>
+				<th>Member Type</th>
+				<th>Cost</th>
+				<th>Register Date</th>
+			</tr>
+					{%for d in data%}
+			<tr>
+				<td>{{d.id}}</td>
+				<td>{{d.membertype}}</td>
+				<td>{{d.cost}}</td>
+				<td>{{d.registerdate}}</td>
+				<td>
+					<form name="frmdelete" method="POST">
+						<input type="hidden" name="cid" value="{{d.id}}">
+						<input type="submit" name="btnsubmit" class="btn btn-warning" value="Delete">
+						{% csrf_token %}
+					</form>
+				</td>
+				<td>
+					<form name="frmedit" method="POST">
+						<input type="hidden" name="cid" value="{{d.id}}">
+						<input type="submit" name="btnsubmit" class="btn btn-primary" value="Edit">
+						{% csrf_token %}
+					</form>
+				</td>
+			</tr>
+			</tr>
+				{%endfor%}	
+		</table>
+
+
+		
+	</form>
+	{% include "last.html"  %}
+</body>
+</html>

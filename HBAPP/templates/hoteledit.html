@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+     {% include 'temp/head.html' %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Search Form</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src='main.js'></script>
+</head>
+<body>
+     {% include 'temp/superadminmid.html' %}
+
+    <div>
+        <center> <b>{{msg}}</b> </center>
+    </div>
+    <center><h2>Edit Hotel Record</h2></center>
+    <br>
+<div class="container mt-3">
+    <div class="row">
+        <div>
+            {% for d in data %}
+            <form autocomplete="off" name="searchrecord" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label><font color="red" >*</font>Hotel Id</label>
+                    <input name="hid" readonly class="form-control" type="text" value="{{ d.id }}"  />
+                </div>
+                <br>
+                <div>
+                    <label><font color="red" >*</font>Hotel Name</label>
+                    <input name="hotelname" class="form-control" type="text" autofocus="on" value="{{ d.hotelname }}" />
+                </div>
+                <br>
+                <div>
+                    <label><font color="red" >*</font>Owner Name</label>
+                    <input name="ownername" class="form-control" type="text" value="{{ d.ownername }}" />
+                </div>
+                <br>
+                <div>
+                    <label><font color="red" >*</font>Mobile Number</label>
+                    <input name="mobilenumber" class="form-control" type="text" value="{{ d.mobilenumber }}" />
+                </div>
+                <br>
+                <div>
+                    <label><font color="red" >*</font>Registration Photo</label>
+                    <input name="emailid" class="form-control" type="text" value="{{ d.emailid }}" />
+                </div>
+                <br>
+                <div>
+                    <label><font color="red" >*</font>Address</label>
+                    <input name="address" class="form-control" type="text" value="{{ d.address }}" />
+                </div>
+                <br>
+                <div>
+                    <label><font color="red" >*</font>GST Number</label>
+                    <input name="gstnumber" class="form-control" readonly type="text" value="{{ d.gstnumber }}" />
+                </div>
+                <br>
+                <div>
+                    <label><font color="red" >*</font>Registration Date</label>
+                    <input name="date" class="form-control" readonly type="text" value="{{ d.date }}" />
+                </div>
+                <br>
+                <div> 
+                </div>
+                <br>
+                <div>
+                    <label><font color="red" >*</font>Registration Photo</label>
+                    <img static src="{{d.hregphoto}}" height="100px" width="100px" />
+                    <input type="file" class="form-control" name="regimg" required>
+                </div>
+                <br>
+                <div>
+                    <label><font color="red" >*</font>Owner Photo</label>
+                    <img static src="{{d.hownerphoto}}" height="100px"  width="100px" />
+                    <input type="file" class="form-control"  name="ownimg" required>     
+                </div>
+                <br>
+                <center>
+                <div>
+                    <form name="frmdelete" method="POST">
+                        <input type="Submit"  class="btn btn-success" name="btnsubmit" value="Update">
+                        <input type="Reset" class="btn btn-warning" name="btncancel" value="Cancel">
+                        {% csrf_token %}
+                    </form>
+                </div>
+                </center>
+                <br>
+                {% endfor %}
+                 {% csrf_token %}
+            </form>
+        </div>
+    </div> 
+</div>
+ {% include 'temp/last.html' %}
+</body>
+</html>

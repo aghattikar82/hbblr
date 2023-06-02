@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	{% include "temp/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Admin Register </title>
+</head>
+
+<body>
+	{% include "temp/superadminmid.html" %}
+		<div align="center">
+		<h1>Admin Register Page</h1>
+
+		{{msg}}
+	</div>
+<center>
+	<form name="frmregister" method="post" autocomplete="off"  style="text-align: left;"> 
+<div class="container-fluid">
+
+<div class="row">
+	<div class="form-group col-md-3 col-lg-3 col-sm-0"></div>
+
+	<div class="form-group col-md-6 col-lg-12 col-sm-12">
+		<label for="name"><font color="red">*</font> Enter Name </label>
+		<input type="text" name="txtname" class="form-control" placeholder="Enter  Name" maxlength="100" autofocus="on" required>
+	</div>
+</div>	<br>	
+	<div class="row">	
+<div class="form-group col-md-3 col-lg-3 col-sm-0"></div>
+
+	<div class="form-group col-md-6 col-lg-12 col-sm-12">
+		<label for="name"><font color="red">*</font> Mobile Number </label>
+		<input type="number" name="txtmobilenumber"  class="form-control" placeholder="Enter Mobile Number" maxlength="13" required>
+	</div>
+</div><br>
+<div class="row">	
+	<div class="form-group col-md-3 col-lg-3 col-sm-0"></div>
+
+	<div class="form-group col-md-6 col-lg-12 col-sm-12">
+		<label for="name"><font color="red">*</font> Mobile Password	 </label>
+		<input type="password" name="txtpassword"  class="form-control" placeholder="Enter Password" maxlength="20" required>
+	</div>
+</div><br>
+<div align="center">
+
+<input type="submit" name="btnregister" value="Register" class="btn btn-success">		
+
+	</div>
+
+	
+
+</div>
+{% csrf_token %}
+</form>
+</div>
+
+</center>
+{% include "temp/last.html" %}
+
+</body>
+</html>

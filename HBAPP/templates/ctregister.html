@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "head.html"  %}
+	<title>Customer Register</title>
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	{% include "ctlogin_mid.html"  %}
+	<center><h2>Customer Register</h2></center>
+	<div style="height: 40px" align="center">
+				{{msg}}
+	</div>
+	<form name="frmregister" method="POST" autocomplete="off" enctype="multipart/form-data">
+		<div class="form-group col-md-12">
+			<label for="name"><font color="red">*</font> Name</label>
+			<input type="text" name="customer_name" class="form-control" autofocus="on" required placeholder="Enter Your Name">
+		</div>
+		<div class="form-group col-md-12">
+			<label for=mobile_number><font color="red">*</font> Mobile Number</label>
+			<input type="number" name="mobile_number" class="form-control" min="6300000000" max="999999999999" required placeholder="Enter Your Mobile Number">	
+		</div>
+		<div class="form-group col-md-12">
+			<label for="Email_id"><font color="red">*</font>Email ID</label>
+			<input type="email" name="gmail" class="form-control" required placeholder="Enter Your Email ID">
+		</div>
+		<div class="form-group col-md-12">
+			<label for="aadhar_n"><font color="red">*</font>Aadhar Number</label>
+			<input type="number" name="aadhar_n" class="form-control" min="100000000000" max="9999999999999" required placeholder="Enter Your Aadhar Number">
+		</div>
+		<div class="form-group col-md-12">
+			<label for="address"><font color="red">*</font>Address</label>
+			<textarea name="address" class="form-control" required placeholder="Enter Your Address"></textarea>
+		</div>
+		<div class="form-group col-md-12"> 
+			<label for="Current_location"><font color="red">*</font>Current Location</label>
+			<textarea name="Current_location" class="form-control" required placeholder="Enter Your Current Location"></textarea>
+		</div>
+
+		<div class="form-group col-md-12">
+			<label for="image"><font color="red">*</font>Photo</label>
+			<input type="file" name="myimage" class="form-control">
+		</div>
+		<div class="form-group col-md-12">
+			<label for="password"><font color="red">*</font>Password</label>
+			<input type="password" name="password" class="form-control" required placeholder="Enter Password">
+		</div>
+		
+		<div  align="center">
+
+			<input type="submit" class="btn btn-success" name="btnsubmit" value="Submit">
+			<input type="reset" class="btn btn-warning" name="btncancel" value="Cancel">
+		</div>
+
+	
+		{% csrf_token %}
+	</form>
+
+	{% include "last.html"  %}
+</body>
+</html>

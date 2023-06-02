@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "head.html"  %}
+	<title>Search</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	{% include "mid.html"  %}
+	<center><h2>Search</h2></center>
+	<div style="height: 40px" align="center">
+				{{msg}}
+	</div>
+	<form  name="frmsearch" method="POST" autocomplete="off">
+		<table  class="table table-bordered">
+			<tr>
+				<td>
+				<div class="input-group mb-3">
+					<select name="searchby" class="form-control" required autofocus>
+						<option>Select By</option>
+						<option value="id">ID</option>
+						<option value="name">Name</option>
+						<option value="mobile_number">Mobile Number</option>
+					</select>
+				</td>
+				<td>
+					<input type="tex" name="searchvaluve" class="form-control"  required placeholder="Enter ID/Name/Mobile Number">
+				</td>
+				<td>
+					<input type="submit" name="btnsubmit" class="btn btn-success" value="Get Data">
+				</td>
+			</tr>
+		</div>
+		</table>
+			{% csrf_token %}
+	</form>
+			{% if data %}
+	<form name="frmdisplay" method="POST">
+		<table class="table table-bordered" align="center">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Mobile Number</th>
+				<th>Gmail</th>
+				<th>Aadhar Number</th>
+				<th>Address</th>
+				<th>Current Location</th>
+				<th>Photo</th>
+				<th>Register Date</th>
+			</tr>
+				{% for d in data %}
+			<tr>
+				<td>{{d.id}}</td>
+				<td>{{d.customer_name}}</td>
+				<td>{{d.mobile_number}}</td>
+				<td>{{d.gmail}}</td>
+				<td>{{d.aadhar_number}}</td>
+				<td>{{d.address}}</td>
+				<td>{{d.Current_location}}</td>
+				<td><img static src="{{d.image}}" height="50px" width="50px"></td>
+				<td>{{d.registerdate}}</td>
+				<td>
+					<form name="frmdelete" method="POST">
+						<input type="hidden" name="cid" value="{{d.id}}">
+						<input type="submit" name="btnsubmit" class="btn btn-warning" value="Delete">
+						{% csrf_token %}
+					</form>
+				</td>
+				<td>
+					<form name="frmedit" method="POST">
+						<input type="hidden" name="cid" value="{{d.id}}">
+						<input type="submit" name="btnsubmit" class="btn btn-primary" value="Edit">
+						{% csrf_token %}
+					</form>
+				</td>
+			</tr>
+
+				{%endfor%}
+		</table>
+				{%endif%}
+
+				{% csrf_token %}
+	</form>
+
+	{% include "last.html"  %}
+</body>
+</html>

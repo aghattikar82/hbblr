@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	
+<head> 
+ {% include "head.html"  %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>Custemer Login</title>
+</head>
+<body>
+{% include "ctlogin_mid.html"  %}
+<form name="frmlogin" method="post" autocomplete="off"  "> 
+	<div align="center" >
+		{{msg}}
+	</div>
+
+<div align="center"><h1>Customer Login</h1></div>
+<div class="container-fluid">
+
+	<div class="row">	
+<div class="form-group col-md-3 col-lg-4 col-sm-0"></div>
+
+	<div  class="form-group col-md-6 col-lg-4 col-sm-12">
+		<label for="number"><font color="red">*</font> Mobile Number </label>
+		<input type="number" value="8884755720" name="mobilenumber" autofocus  class="form-control" placeholder="Enter Mobile Number" maxlength="13" required>
+	</div>
+</div>
+<div class="row">	
+	<div class="form-group col-md-6 col-lg-4 col-sm-0"></div>
+
+	<div class="form-group col-md-3 col-lg-4 col-sm-12">
+		<label for="password"><font color="red">*</font>  Password	 </label>
+		<input type="password" value="ajay123" name="password"  class="form-control" placeholder="Enter Password" maxlength="20" required>
+	</div>
+</div>
+<br>
+<div align="center">
+	<input type="submit" name="btnlogin" value="Login" class="btn btn-success" >
+							
+	<input type="reset" name="btncancel" value="Cancel" class="btn btn-warning" >
+</div>
+	
+
+</div>
+{% csrf_token %}
+</form>
+	{% include "last.html"  %}
+</body>
+</html>

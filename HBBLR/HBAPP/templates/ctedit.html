@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "head.html"  %}
+	<title>customerregister</title>
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	{% include "mid.html"  %}
+	<center><h2>Edit Customer Details </h2></center>
+	<div style="height: 40px" align="center">
+				{{msg}}
+	</div>
+			{%for d in data%}
+	<form name="frmregister" enctype="multipart/form-data" method="POST" autocomplete="off">
+		<div class="form-group col-md-12">
+			<label for="name">Customer ID</label>
+			<input type="number" name="id" class="form-control" style="background-color: grey;color: white" readonly value="{{d.id}}">
+		</div>
+		<div class="form-group col-md-12">
+			<label for="name">Name</label>
+			<input type="text" name="customer_name" class="form-control" style="background-color: grey;color: white" readonly value="{{d.customer_name}}">
+		</div>
+
+		<div class="form-group col-md-12">
+			<label for="aadhar">Aadhar Number</label>
+			<input type="number" name="aadhar_number" class="form-control" style="background-color: grey;color: white" required value="{{d.aadhar_number}}">
+		</div>
+
+
+		<div class="form-group col-md-12">
+			<label for=mobile_number>Mobile Number</label>
+			<input type="number" name="mobile_number" class="form-control" autofocus="on" required value="{{d.mobile_number}}">	
+		</div>
+		<div class="form-group col-md-12">
+			<label for="Email_id">Gmail ID</label>
+			<input type="gmail" name="gmail" class="form-control" required value="{{d.gmail}}" ">
+		</div>
+		
+		<div class="form-group col-md-12">
+			<label for="address">Address</label>
+			<input type="text" name="address" class="form-control" required value="{{d.address}}">
+		</div>
+		<div class="form-group col-md-12">
+			<label for="Current_location">Current Location</label>
+			<input type="text" name="Current_location" class="form-control" required value="{{d.Current_location}}"> 
+		</div>
+		<div class="form-group col-md-12">
+			<label for="Current_location">Photo</label>
+			<img static src="{{d.image}}" height="50px" width="50px">
+			<input type="file" name="newimage" class="form-control">
+		</div>
+	
+
+
+		<div class="row" align="center">
+
+			<input type="hidden" name="cid" value="{{d.id}}">
+			<input type="submit" class="btn btn-success" name="btnsubmit" value="Update">
+			<input type="reset" class="btn btn-warning" name="btncancel" value="Cancel">
+		</div>
+
+				{%endfor%}
+
+	
+		{% csrf_token %}
+	</form>
+
+		{% include "last.html"  %}
+
+</body>
+</html>

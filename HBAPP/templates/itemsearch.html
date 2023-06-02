@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+{% include "hotelhead.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Search Items</title>
+</head>
+<body>
+	{% include "hotelmid.html" %}
+	<div  align="center">
+		<h3> Search Item</h3>
+	</div>
+	{% if msg %}
+	<center>
+		<div class="alert alert-success" align="center">
+			<strong>{{msg}}</strong> 
+		</div>
+	</center>
+
+	{% endif %}		
+<form method="post" autocomplete="off" name="frmsearch">
+	<div class="container-fluid mt-3">
+		<div class="row ">
+		<div class="input-group mb-3">
+			<span class="col-3">
+				<select name="ddlfield" class="form-select" autofocus="on">
+					<option>Select Option</option> 
+					<option value="id" >Item ID</option> 
+					<option value="itemname">Item Name</option> 
+					<option value="category">Item Category</option> 
+				</select>
+			</span>
+				<input type="text" align="center" class="form-control" name="txtseacrh" placeholder="Enter Name or Mobile Number " required>
+				<input type="submit" name="btnsubmit" class="btn btn-info" value="Get Item">
+		</div>
+	</div>
+		</div>
+	{% csrf_token %}
+</form>
+
+
+
+<div class="container mt-3">
+	
+	{% for i in data %}
+	<div id="accordion">
+		<div class="card">
+			<div class="card-header">
+				<a class="btn" data-bs-toggle="collapse" href="#collapse{{i.id}}">
+					<b>Item Name:</b>{{i.itemname}}
+				</a>
+			</div>
+			<div id="collapse{{i.id}}" class="collapse " data-bs-parent="#accordion">
+				<div class="card-body">
+					<ul class="list-group">
+						<li class="list-group-item"><b>Item ID: </b>{{i.id}} </li>
+						<li class="list-group-item"><b>Item Name:</b>{{i.itemname}}</li>
+						<li class="list-group-item"><b>Item Category:</b>{{i.category}}</li>
+						<li class="list-group-item"><b>Item Cost: </b>{{i.cost}}  </li>
+						<li class="list-group-item"><b>Item Image:</b> </li>
+						<li><img static src="{{i.itemphoto}}" height="100px" width="100px"></li>
+						<li class="list-group-item"><b>Added On: </b>{{i.created_on}}</li>
+					</ul> 
+
+				<div class="btn-group mt-3">
+					<form method="post" name="frmdelete" >
+					<input type="hidden" name="itemid" value="{{i.id}}">
+					<input type="submit" class="btn btn-danger" name="btnsubmit" value="Delete">
+					<input type="hidden" name="itemid" value="{{i.id}}">
+					<input type="submit" name="btnsubmit" value="Edit" class="btn btn-primary">		
+					{% csrf_token%}
+				</form>
+				</div>
+				</div>
+			</div>
+		</div>
+
+
+	{% endfor %}
+{% include "hotellast.html" %}
+
+</body>
+</html>

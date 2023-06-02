@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+     {% include 'hotelhead.html' %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Display Form</title>
+   
+</head>
+<body>
+ {% include 'hotelmid.html' %}
+<div>
+    <center>
+        <h2>
+            Hotel Data
+        </h2>
+    </center>
+</div>
+<div class="container mt-3">
+
+    {% for d in data %}
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header">
+          <a class="btn" data-bs-toggle="collapse" href="#collapse{{ d.id }}">
+            <b>Hotel Name:</b> {{ d.hotelname }}
+          </a>
+        </div>
+        <div id="collapse{{ d.id }}" class="collapse" data-bs-parent="#accordion">
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><b>Hotel ID: </b>{{ d.id }} </li>
+                    <li class="list-group-item"><b>Hotel Name:</b> {{ d.hotelname }}</li>
+                    <li class="list-group-item"><b>Owner Name:</b>{{ d.ownername }}</li>
+                    <li class="list-group-item"><b>Mobile Number:</b>{{ d.mobilenumber }}</li>
+                    <li class="list-group-item"><b>Email Id:</b>{{ d.emailid }}</li>
+                    <li class="list-group-item"><b>Address:</b>{{ d.address }}</li>
+                    <li class="list-group-item"><b>GST Number:</b>{{ d.gstnumber }}</li>
+                    <li class="list-group-item"><b>Owner Photo:</b></li>
+                        <li><img static src="{{d.hownerphoto}}" height="100px"  width="100px" /> </li>
+                    <li class="list-group-item"><b>Registration Photo:</b></li>
+                        <li><img static src="{{d.hregphoto}}" height="100px"  width="100px" /></li>
+                    <li class="list-group-item"><b>Registration Date: </b>{{ d.date }} </li>
+                </ul> 
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+ {% include 'hotellast.html' %}
+</body>
+</html>

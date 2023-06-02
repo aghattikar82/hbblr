@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	{% load static %}
+	{% include "head.html" %}
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>Update Item Details </title>
+</head>
+<body>
+{% include "adminmid.html" %}
+
+<form name="frmupdate" enctype="multipart/form-data" method="post" autocomplete="off"  style="text-align: left;"> 
+{% for i in data %}
+<div class="container-fluid">
+<div align="center" >
+	<h1>Update Item Details</h1> 
+</div>
+<div class="row">
+	<div class="form-group col-md-3 col-lg-3 col-sm-0"></div>
+
+	<div class="form-group col-md-6 col-lg-6 col-sm-12">
+		<label for="name"><font color="red">*</font>Item ID</label>
+		<input type="text" name="itemid" class="form-control" value="{{i.id}}" readonly placeholder="Enter  Name" maxlength="100" autofocus="on" >
+	</div>
+</div>		
+<div class="row">	
+	<div class="form-group col-md-3 col-lg-3 col-sm-0"></div>
+
+	<div class="form-group col-md-6 col-lg-6 col-sm-12">
+		<label for="name"><font color="red">*</font>Item Category</label>
+		<input type="text" name="txtcategory"  class="form-control" value={{i.category}} maxlength="13" readonly>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-md-3 col-lg-3 col-sm-0"></div>
+
+	<div class="form-group col-md-6 col-lg-6 col-sm-12">
+		<label for="name"><font color="red">*</font>Item Name</label>
+		<input type="text" name="txtitemname" class="form-control" value="{{i.itemname}}"  placeholder="Enter  Name" maxlength="100" autofocus="on" >
+	</div>
+</div>		
+<div class="row">
+	<div class="form-group col-md-3 col-lg-3 col-sm-0"></div>
+
+	<div class="form-group col-md-6 col-lg-6 col-sm-12">
+		<label for="name"><font color="red">*</font>Item Cost</label>
+		<input type="text" name="txtcost" class="form-control" value="{{i.cost}}"  placeholder="Enter  Name" maxlength="100" autofocus="on" >
+	</div>
+</div>		
+<div class="row">
+	<div class="form-group col-md-3 col-lg-3 col-sm-0"></div>
+
+	<div class="form-group col-md-6 col-lg-6 col-sm-12">
+		<label for="name"><font color="red">*</font>Item Image</label>
+		<img static src="{{i.itemphoto}}" height="50px" width="50px">
+		<input type="file" name="txtitemimage" class="form-control">
+	</div>
+</div>		
+
+<div align="center">
+<input type="submit" name="btnsubmit" class="btn btn-success" value="Update">
+		<input type="reset" name="btnsubmit" class="btn btn-warning" value="Cancel">
+		
+	</div>
+</div>
+	
+
+</div>
+{% csrf_token %}
+</form>
+
+
+
+
+</tr>		
+{% endfor %}
+
+	</table>
+</center>
+	
+{% csrf_token	%}
+</form>
+{% include "last.html" %}
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "head.html"  %}
+		<title>Cart</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+	function counter(val)
+	{
+		c=parseInt(document.getElementById("txtcount").value);
+
+		if(val==-1 && c=="1" )
+		{
+			document.getElementById("txtcount").value="1";
+		}
+		else
+		{
+			c+=parseInt(val);
+			document.getElementById("txtcount").value="";
+			document.getElementById("txtcount").value=c;
+		}
+	}
+</script>
+
+</head>
+<body>{% include "ctmid.html" %}
+	<center>
+	{{msg}}
+	</center>
+		<div class="responsive">
+	<table class="table"  style="width: 50%;" align="center">
+				<tr>
+					<th>Item</th>
+					<th>Quantity</th>
+					<th>Rate</th>
+					<th>Amount</th>
+					
+				</tr>
+	{% for  i  in data %}
+	<center>
+		<tr>
+			<td><b>{{i.itemid}}</b></td>
+			<td><b>
+					  <div  class="input-group">
+							    <input  type="button"  name="btnsub" value="-" onclick="counter(-1)" class="btn btn-secondary"/>
+							    <input readonly type="number" id="txtcount"  name="qty" value="{{i.quantity}}" min="0" max="50" class="btn btn-light"/>
+							    <input type="button"  name="btnadd" value="+" onclick="counter(1)" class="btn btn-secondary"/>
+							 
+								</div>
+
+			</b></td>
+			<td><b>{{i.itemcost}}</b></td>
+			<td><b>{{i.amount}}</b></td>
+
+
+		</tr>
+
+			     {%endfor%}
+		<tr>
+			<td colspan="3">Total Amount</td>
+			<td>{{totalamount}}</td>
+		</tr>
+		</center>
+		</table>		
+		<form action="/ctcart"  name="frmorder" method="POST">
+			     <center>
+			     	<input type="hidden" name="amount" value="{{totalamount}}">
+					<input type="hidden" name="hotelid" value="{{hotelid}}">
+			     	<input type="submit" name="Submit Order" class="btn btn-success">
+<a href="/cthome"><button type="button" class="btn btn-warning">Add More Items</button></a> 
+
+			     </center>
+			     {% csrf_token %}
+		</form>
+
+{% include "last.html"  %}
+</body>
+</html>

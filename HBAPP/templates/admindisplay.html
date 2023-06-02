@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	{% include "temp/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Admin Details</title>
+</head>
+<body>
+{% include "temp/superadminmid.html" %}
+ <center>
+	<h1> Admins Details</h1>
+	<center>{{msg}}</center>
+	</center>
+
+		<table align="center" border="1" class="table  table-bordered">
+			
+			<tr>
+				<th>Admin ID</th>
+				<th> Admin  Name</th>
+				<th>Mobile Number</th>
+				<th>Created By</th>
+				<th>Created On</th>
+			</tr>
+			{% for i in data %}
+
+
+<tr>
+	<td>{{i.id}}</td>
+	<td>{{i.adminname}}</td>
+	<td>{{i.mobilenumber}}</td>
+	<td>{{i.createdby}}</td>
+	<td>{{i.createdon}}</td>
+	{% endfor %}
+</tr>
+		</table>
+		
+
+	{% include "temp/last.html" %}
+</body>
+</html>
